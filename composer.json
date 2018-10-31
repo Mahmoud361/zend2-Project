@@ -12,8 +12,11 @@
         "zendframework/zendframework": "~2.4.11",
         "doctrine/doctrine-orm-module": "0.*",
         "robmorgan/phinx": "^0.10.6",
-        "fzaninotto/faker": "^1.8"
+        "fzaninotto/faker": "^1.8",
+        "mustache/mustache": "^2.12",
+        "widmogrod/zf2-mustache-module": "dev-master"
     },
+  
     "require-dev": {
     }
 }

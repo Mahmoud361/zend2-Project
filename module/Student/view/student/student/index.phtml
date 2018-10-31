@@ -8,6 +8,23 @@ $this->headTitle($title);
 <p>
     <a href="<?php echo $this->url('student', array('action'=>'add'));?>">Add new Student</a>
 </p>
+
+<?php
+
+if ($this->flashMessenger()->hasMessages()) {
+
+    echo '<div class="alert alert-danger">';
+
+    $messages = $this->flashMessenger()->getMessages();
+    foreach($messages as $message) {
+        echo $message;
+    }
+
+    echo '</div>';
+}
+
+?>
+
 <table class="table">
     <tr>
         <th>fristName</th>
@@ -27,7 +44,11 @@ $this->headTitle($title);
                 <?php  foreach ($student->books as $book):?>
                 <?php  echo $book->name;?>
                     <a href="<?php echo $this->url('student',
-                        array('action'=>'deletebook', 'id' =>$student->id."|".$book->id ));?>">delete</a>
+                        array(
+                                'action'=>'deletebook',
+                            'bookid'=>$book->id,
+                            'studentid' =>$student->id
+                        ));?>">delete</a>
                     <br><?php endforeach;?>
             </td>
 

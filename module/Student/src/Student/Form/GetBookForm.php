@@ -36,7 +36,7 @@ class GetBookForm extends Form implements ObjectManagerAwareInterface
             'type' => 'DoctrineModule\Form\Element\ObjectMultiCheckbox',
             'name' => 'books',
             'attributes' => array(
-                'style'=>'width:100px',
+                'style'=>'width:500px',
              ),
             'options' => array(
                     'object_manager' => $this->getObjectManager(),

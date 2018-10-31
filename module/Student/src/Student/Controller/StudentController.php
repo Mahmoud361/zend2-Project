@@ -115,43 +115,26 @@ class StudentController extends AbstractActionController
     {
         $id = (int) $this->params()->fromRoute('id',0);
         if(!$id){
+            $this->flashMessenger()->addMessage('Invalid Student ID');
             return $this->redirect()->toRoute('student');
         }else{
             $student = $this->getEntityManager()->find('Student\Entity\Student',$id);
+            if($student == null){
+                $this->flashMessenger()->addMessage('Invalid Student ID');
+                return $this->redirect()->toRoute('student');
+            }
             $this->getEntityManager()->remove($student);
             $this->getEntityManager()->flush();
             return $this->redirect()->toRoute('student');
         }
     }
 
-    public function tempAction()
+    public function testmustacheAction()
     {
-        $student = new Student();
-        $student->exchangeArray(array(
-            'id'=>1,
-           'fristName' => 'mahmoud',
-           'lastName'  => 'mohamed',
-           'email'     => 'mail@mail.com',
-           'address'   => 'address',
-        ));
-        $book = new Book();
-        $book->exchangeArray(array(
-            'id'=> 1,
-            'name'=>'newBook',
-            'author'=>'mahmoud',
-        ));
-        $student->addBook($book);
-        $book = new Book();
-        $book->exchangeArray(array(
-            'id'=>2,
-            'name'=>'book2',
-            'author'=>'medo',
-        ));
-        $student->addBook($book);
 
-        $this->getEntityManager()->persist($student);
-        $this->getEntityManager()->flush();
-        return "Done";
+        return new ViewModel(array(
+            'id'=>25,
+        ));
     }
 
     public function addbookAction()
@@ -202,44 +185,52 @@ class StudentController extends AbstractActionController
 
     public function getbookAction()
     {
-        die("getbook");
-        $ids =  $this->params()->fromRoute('id', 0);
-        list($studentId, $bookId) = explode('|', $ids);
-
-        $studentId = (int) $studentId;
-        $bookId = (int) $bookId;
-
-        $student = $this->getEntityManager()->find('Student\Entity\Student',$studentId);
-        $book    = $this->getEntityManager()->find('Book\Entity\Book',$bookId);
-
-        $student->addBook($book);
-
-        $this->getEntityManager()->persist($student);
-        $this->getEntityManager()->flush();
-        //return $this->redirect()->toRoute('student');
-        return $this->redirect()->toRoute('student', array(
-            'action' => 'addbook',
-            'id'     => $studentId,
-        ));
+        die("getbook"); //no longer used
+//        $ids =  $this->params()->fromRoute('id', 0);
+//        list($studentId, $bookId) = explode('|', $ids);
+//
+//        $studentId = (int) $studentId;
+//        $bookId = (int) $bookId;
+//
+//        $student = $this->getEntityManager()->find('Student\Entity\Student',$studentId);
+//        $book    = $this->getEntityManager()->find('Book\Entity\Book',$bookId);
+//
+//        $student->addBook($book);
+//
+//        $this->getEntityManager()->persist($student);
+//        $this->getEntityManager()->flush();
+//        //return $this->redirect()->toRoute('student');
+//        return $this->redirect()->toRoute('student', array(
+//            'action' => 'addbook',
+//            'id'     => $studentId,
+//        ));
 
     }
 
     public function deletebookAction()
     {
-        $ids =  $this->params()->fromRoute('id', 0);
-        list($studentId, $bookId) = explode('|', $ids);
+//        $ids =  $this->params()->fromRoute('id', 0);
+//        list($studentId, $bookId) = explode('|', $ids);
+//
+//        $studentId = (int) $studentId;
+//        $bookId = (int) $bookId;
 
-        $studentId = (int) $studentId;
-        $bookId = (int) $bookId;
+        $studentId = (int) $this->params()->fromRoute('studentid', 0);
+        $bookId    =(int) $this->params()->fromRoute('bookid', 0);
 
         $student = $this->getEntityManager()->find('Student\Entity\Student',$studentId);
         $book    = $this->getEntityManager()->find('Book\Entity\Book',$bookId);
-        if(!($student == null || $book == null )){
+        if($student == null || $book == null) {
+            $this->flashMessenger()->addMessage('Invalid Parameters');
+
+        } else {
+
             $student->removeBook($book);
             //->getEntityManager()->persist($student);
             $this->getEntityManager()->flush();
         }
         return $this->redirect()->toRoute('student');
     }
+
 
 }

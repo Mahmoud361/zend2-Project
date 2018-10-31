@@ -1,0 +1,19 @@
+<?php
+
+    $m = new Mustache_Engine;
+    echo $m->render('<h1>Hello {{planet}}</h1>', array('planet' => 'World!'));
+
+$id =$this->id;
+# initializing Mustache
+//require_once __dir__.'/mustache.php-master/src/Mustache/Autoloader.php';
+//Mustache_Autoloader::register();
+//$mustache = new Mustache_Engine;
+# setting data for our template
+$profile_data = array(
+    'name' => 'Pranav Rana',
+    'age_in_years' => $id,
+    'marital_status' => 'single'
+);
+# preparing and outputting
+echo $m->render("Hi, I am {{name}}. I am {{age_in_years}} years old and {{marital_status}}.",
+    $profile_data); # outputs: Hi, I am Pranav Rana. I am 29 years old and single.

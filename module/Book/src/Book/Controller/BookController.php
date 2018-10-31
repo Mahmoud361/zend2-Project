@@ -54,7 +54,8 @@ class BookController extends AbstractActionController
                 $this->getEntityManager()->persist($book);
                 $this->getEntityManager()->flush();
 
-                // Redirect to list of albums
+                // Redirect to list of books
+                $this->flashMessenger()->addMessage('Book Inserted successful ');
                 return $this->redirect()->toRoute('book');
             }
         }
