@@ -1,0 +1,21 @@
+<?php
+
+$title ='add new student';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title);?></h1>
+
+
+<?php
+
+$form->setAttribute('action', $this->url('student', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('fristName'));
+echo $this->formRow($form->get('lastName'));
+echo $this->formRow($form->get('email'));
+echo $this->formRow($form->get('address'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();

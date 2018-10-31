@@ -1,0 +1,45 @@
+<?php
+$title = 'My Student';
+$this->headTitle($title);
+?>
+
+<h1><?php  $this->escapeHtml($title);  ?></h1>
+
+<p>
+    <a href="<?php echo $this->url('student', array('action'=>'add'));?>">Add new Student</a>
+</p>
+<table class="table">
+    <tr>
+        <th>fristName</th>
+        <th>lastName</th>
+        <th>Address</th>
+        <th>email</th>
+        <th>owned books</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($students as $student) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($student->fristName);?></td>
+            <td><?php echo $this->escapeHtml($student->lastName);?></td>
+            <td><?php echo $this->escapeHtml($student->address);?></td>
+            <td><?php echo $this->escapeHtml($student->email);?></td>
+            <td>
+                <?php  foreach ($student->books as $book):?>
+                <?php  echo $book->name;?>
+                    <a href="<?php echo $this->url('student',
+                        array('action'=>'deletebook', 'id' =>$student->id."|".$book->id ));?>">delete</a>
+                    <br><?php endforeach;?>
+            </td>
+
+            <td>
+                <a href="<?php echo $this->url('student',
+                    array('action'=>'edit', 'id' => $student->id));?>">Edit</a>
+                <a href="<?php echo $this->url('student',
+                    array('action'=>'delete', 'id' => $student->id));?>">Delete</a>
+
+                <a href="<?php echo $this->url('student',
+                    array('action'=>'addbook', 'id' => $student->id));?>">addbook</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>

@@ -1,0 +1,123 @@
+<?php
+//
+//$title ='add Book To Student';
+//$this->headTitle($title);
+//?>
+<!--<h1>--><?php //echo $this->escapeHtml($title);?><!--</h1>-->
+<!---->
+<!---->
+<?php
+//
+//
+//$form = $this->form;
+//var_dump($this);die();
+//$form->setAttribute('action', $this->url(
+//    'student',
+//    array(
+//        'action' => 'addbook',
+//        'id'     => $this->id,
+//    )
+//));
+//$form->prepare();
+//
+//echo $this->form()->openTag($form);
+//echo $this->formHidden($form->get('id'));
+//echo $this->formRow($form->get('fristName'));
+//echo $this->formRow($form->get('lastName'));
+//echo $this->formRow($form->get('email'));
+//echo $this->formRow($form->get('address'));
+//echo $this->formSubmit($form->get('submit'));
+//echo $this->form()->closeTag();
+//
+//?>
+<!---->
+<!--<form action="" method="post">-->
+<!--    <input type="hidden" value="">-->
+<!--    Book Id : <input type="number" name="bookId">-->
+<!--    <input type="submit">-->
+<!--</form>-->
+
+<!---->
+<?php
+//$title = 'My books';
+//$this->headTitle($title);
+//?>
+<!---->
+<!--<h1>--><?php // $this->escapeHtml($title);  ?><!--</h1>-->
+<!---->
+<!--<p>-->
+<!--    <a href="--><?php //echo $this->url('student');?><!--">View Students</a>-->
+<!--</p>-->
+<!--<table class="table">-->
+<!--    <tr>-->
+<!--        <th>Book Name</th>-->
+<!--        <th>Book Author</th>-->
+<!--        <th>&nbsp;</th>-->
+<!--    </tr>-->
+<!--    --><?php //foreach ($result as $book) : ?>
+<!--        <tr>-->
+<!--            <td>--><?php //echo $this->escapeHtml($book['name']);?><!--</td>-->
+<!--            <td>--><?php //echo $this->escapeHtml($book['author']);?><!--</td>-->
+<!--            <td><a href="--><?php //echo $this->url('student', array(
+//                    'action'=>'getbook',
+//                    'id'    =>$studentId.'|'.$book['id'],
+//                    ));?><!--">Get This Book</a></td>-->
+<!---->
+<!--        </tr>-->
+<!--    --><?php //endforeach; ?>
+<!--</table>-->
+
+
+
+<?php
+
+
+$title ='add new student';
+$this->headTitle($title);
+?>
+    <h1><?php echo $this->escapeHtml($title);?></h1>
+
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('student', array(
+        'action' => 'addbook',
+        'id'     => $this->form->studentId,
+    )));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formRow($form->get('books'));
+?>
+<br>
+<?php
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
