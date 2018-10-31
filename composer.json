@@ -10,9 +10,10 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "~2.4.11",
-        "doctrine/doctrine-orm-module": "0.*"
+        "doctrine/doctrine-orm-module": "0.*",
+        "robmorgan/phinx": "^0.10.6",
+        "fzaninotto/faker": "^1.8"
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.8"
     }
 }
