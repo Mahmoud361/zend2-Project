@@ -43,11 +43,11 @@ if ($this->flashMessenger()->hasMessages()) {
             <td>
                 <?php  foreach ($student->books as $book):?>
                 <?php  echo $book->name;?>
-                    <a href="<?php echo $this->url('student',
+                    <a href="<?php echo $this->url('news',
                         array(
                                 'action'=>'deletebook',
-                            'bookid'=>$book->id,
-                            'studentid' =>$student->id
+                            'id' =>$student->id,
+                            'bookid'=>$book->id
                         ));?>">delete</a>
                     <br><?php endforeach;?>
             </td>

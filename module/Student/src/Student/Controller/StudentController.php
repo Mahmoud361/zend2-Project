@@ -129,12 +129,34 @@ class StudentController extends AbstractActionController
         }
     }
 
-    public function testmustacheAction()
+    public function tempAction()
     {
-
-        return new ViewModel(array(
-            'id'=>25,
+        $student = new Student();
+        $student->exchangeArray(array(
+            'id'=>1,
+           'fristName' => 'mahmoud',
+           'lastName'  => 'mohamed',
+           'email'     => 'mail@mail.com',
+           'address'   => 'address',
         ));
+        $book = new Book();
+        $book->exchangeArray(array(
+            'id'=> 1,
+            'name'=>'newBook',
+            'author'=>'mahmoud',
+        ));
+        $student->addBook($book);
+        $book = new Book();
+        $book->exchangeArray(array(
+            'id'=>2,
+            'name'=>'book2',
+            'author'=>'medo',
+        ));
+        $student->addBook($book);
+
+        $this->getEntityManager()->persist($student);
+        $this->getEntityManager()->flush();
+        return "Done";
     }
 
     public function addbookAction()
@@ -142,12 +164,12 @@ class StudentController extends AbstractActionController
         $studentId = (int) $this->params()->fromRoute('id', 0);
         if (!$studentId) {
             return $this->redirect()->toRoute('student', array(
-                'action' => 'student'
+                'action' => 'index'
             ));
         }
 
         $form = new GetBookForm($this->getEntityManager(), $studentId);
-        $form->setObjectManager($this->getEntityManager(), $studentId);
+        //$form->setObjectManager($this->getEntityManager(), $studentId);
 
         $request = $this->getRequest();
         if($request->isPost()) {
@@ -215,7 +237,7 @@ class StudentController extends AbstractActionController
 //        $studentId = (int) $studentId;
 //        $bookId = (int) $bookId;
 
-        $studentId = (int) $this->params()->fromRoute('studentid', 0);
+        $studentId = (int) $this->params()->fromRoute('id', 0);
         $bookId    =(int) $this->params()->fromRoute('bookid', 0);
 
         $student = $this->getEntityManager()->find('Student\Entity\Student',$studentId);
