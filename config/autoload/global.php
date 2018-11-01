@@ -10,7 +10,7 @@
  * control, so do not include passwords or other sensitive information in this
  * file.
  */
-
+//var_dump(dirname('C:\xampp\htdocs\zf2\student\testmustache') );die();
 return array(
     'db' => array(
         'driver'         => 'Pdo',
@@ -24,5 +24,15 @@ return array(
             'Zend\Db\Adapter\Adapter'
             => 'Zend\Db\Adapter\AdapterServiceFactory',
         ),
+    ),
+    'mustache' => array(
+        'suffix' => 'phtml',
+        'pragmas' => array(
+            Mustache_Engine::PRAGMA_BLOCKS
+        ),
+//        'partials_loader' => array(
+//            "C:/xampp/htdocs/zf2/module/Student/view/student/student",
+//            "extension" => ".phtml"
+//        )
     ),
 );

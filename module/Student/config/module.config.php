@@ -32,7 +32,7 @@ return array(
                     ),
                 ),
             ),
-            'news' => array(
+            'new' => array(
                 'type' => 'segment',
                 'options' =>array(
                     'route' => '/student[/:action][/:id][/:bookid]',
@@ -48,19 +48,6 @@ return array(
                 ),
             ),
 
-//                'type' => 'segment',
-//                'options' =>array(
-//                    'route' => '/student[/:action][/:bookid][/:studentid]',
-//                    'constrains' => array(
-//                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-//                        'bookid'    => '[0-9]+',
-//                        'stdid'    => '[0-9]+',
-//                    ),
-//                    'defaults' => array(
-//                        'controller' => 'Student\Controller\Student',
-//                        'action'     => 'index',
-//                    ),
-//                ),
 
         ),
     ),

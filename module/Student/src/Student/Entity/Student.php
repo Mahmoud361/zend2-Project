@@ -215,5 +215,10 @@ class Student implements InputFilterAwareInterface
         return $this->inputFilter;
     }
 
+    public function __toString()
+    {
+        return $this->id .'__' .$this->fristName . '__' . $this->lastName;
+    }
+
 
 }

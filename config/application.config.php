@@ -5,6 +5,8 @@ return array(
         'Application',
         'DoctrineModule',
         'DoctrineORMModule',
+        'Mustache',
+        'CustomMustache',
         'Album',
         'Student',
         'Book',
@@ -68,3 +70,10 @@ return array(
    // Should be compatible with Zend\ServiceManager\Config.
    // 'service_manager' => array(),
 );
+if (Console::isConsole()) {
+    $key = array_search('CustomMustache', $config['modules']);
+    unset($config['modules'][$key]);
+}
+
+return $config;
+

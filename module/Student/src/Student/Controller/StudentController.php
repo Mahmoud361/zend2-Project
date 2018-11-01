@@ -231,12 +231,6 @@ class StudentController extends AbstractActionController
 
     public function deletebookAction()
     {
-//        $ids =  $this->params()->fromRoute('id', 0);
-//        list($studentId, $bookId) = explode('|', $ids);
-//
-//        $studentId = (int) $studentId;
-//        $bookId = (int) $bookId;
-
         $studentId = (int) $this->params()->fromRoute('id', 0);
         $bookId    =(int) $this->params()->fromRoute('bookid', 0);
 
@@ -254,5 +248,15 @@ class StudentController extends AbstractActionController
         return $this->redirect()->toRoute('student');
     }
 
+    public function testmustacheAction()
+    {
+        $request = $this->getRequest();
+        $id = (int) $this->params('id', 25);
+        return new ViewModel(
+            array(
+                'students' => $this->getEntityManager()->getRepository('Student\Entity\Student')->findAll(),
+            )
+        );
+    }
 
 }
